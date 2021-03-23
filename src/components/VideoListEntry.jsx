@@ -1,5 +1,5 @@
 var VideoListEntry = (props) => {
-  console.log(props.video);
+  //console.log(props.video);
 
   return (
 
