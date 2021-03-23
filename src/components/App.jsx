@@ -1,7 +1,7 @@
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
-import earch from './Search.js';
+import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 
 class App extends React.Component {
@@ -9,12 +9,22 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      currentVideo: exampleVideoData[0]
 
     };
   }
 
+  onTitleClick(video) {
+    // must bind set state to app
+    this.setState({
+      currentVideo: video
+    });
+  }
 
   render () {
+    // console.log(this.state.currentVideo);
+
+
     return (
       <div>
         <nav className="navbar">
@@ -24,10 +34,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><h5><em><VideoPlayer videos={exampleVideoData}/></em> view goes here</h5></div>
+            <div><h5><em><VideoPlayer videos={this.state.currentVideo}/></em></h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em><VideoList videos={exampleVideoData}/></em> view goes here</h5></div>
+            <div><h5><em><VideoList videos={exampleVideoData} onTitleClick={this.onTitleClick.bind(this)}/></em></h5></div>
           </div>
         </div>
       </div>
